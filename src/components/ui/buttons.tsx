@@ -4,7 +4,7 @@ import React, { HTMLAttributes, VFC } from "react";
 
 
 export const PrimaryButton : React.FC<HTMLAttributes<HTMLButtonElement>> = ({ className , children ,  ...btnProps})=>{
-return <button className={cn( "px-4 py-2 text-sm border-black border-2" ,className)} {...btnProps}  >
+return <button className={cn( "px-6 py-2 text-sm border-black border-2" ,className)} {...btnProps}  >
 {children}
 </button>
 }
@@ -12,7 +12,7 @@ return <button className={cn( "px-4 py-2 text-sm border-black border-2" ,classNa
 
 
 export const SecondaryButton : React.FC<HTMLAttributes<HTMLButtonElement>> = ({ className , children ,  ...btnProps})=>{
-    return <button className={cn( "px-4 py-2 border-2 border-black text-sm bg-black text-white " ,className)} {...btnProps}  >
+    return <button className={cn( "px-6 py-2 border-2 border-black text-sm bg-black text-white " ,className)} {...btnProps}  >
     {children}
     </button>
     }

@@ -9,17 +9,17 @@ export const Header  = ()=>{
             <source src="/logo.webm" type="video/webm"/>
             <source src="/logo.mp4" type="video/mp4"/>
         </video>
-        <div className="flex px-4 gap-5 centerContent  border-2 border-black" >
-        <i style={{WebkitTextStroke : "1px"}} className="bi bi-search   h-fit  font-bold   "></i>
-        <input className="w-[400px] outline-none h-fit "  />
-        <TextButton className="border-stone-400" >Search</TextButton>
+        <div className="flex p-1 gap-5  centerContent  border-2 border-black" >
+        <i style={{WebkitTextStroke : "1px"}} className="bi bi-search  mx-4 h-fit  font-bold   "></i>
+        <input placeholder="Search" className="w-[400px] outline-none h-fit "  />
+        <TextButton className="border-stone-400 uppercase text-xs font-bold" >Search</TextButton>
         </div>
     </div>
-        <div className="flex gap-6" >
-            <PrimaryButton>SELL</PrimaryButton>
-            <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none " >SHOP</PrimaryButton></Link>
-            <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none " >READ</PrimaryButton></Link>
-            <TextButton className="border-stone-500" >LOGIN</TextButton>
+        <div className="flex gap-3" >
+            <PrimaryButton className="font-semibold">SELL</PrimaryButton>
+            <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none  font-semibold" >SHOP</PrimaryButton></Link>
+            <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none font-semibold " >READ</PrimaryButton></Link>
+            <TextButton className="border-stone-500 font-semibold" >LOGIN</TextButton>
             <SecondaryButton  >SITN UP</SecondaryButton>
         </div>
     </div>
