@@ -3,7 +3,7 @@ import Link from "next/link"
 import { PrimaryButton, SecondaryButton, TextButton } from "../ui/buttons"
 
 export const Header  = ()=>{
-    return <div className="flex items-center justify-center py-4 gap-40" >
+    return <div className="flex border-whinGray border-b-2 items-center justify-center py-6 gap-40" >
     <div className="flex gap-4" >
         <video  poster="/logo.jpg" className="max-w-[13rem] border-2 b outline-none border-none"  autoPlay={true} playsInline={true} loop={true} >
             <source src="/logo.webm" type="video/webm"/>
@@ -24,3 +24,22 @@ export const Header  = ()=>{
         </div>
     </div>
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
