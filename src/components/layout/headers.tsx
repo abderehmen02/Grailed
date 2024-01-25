@@ -1,6 +1,6 @@
 import { appConfig } from "@/config/appConfig"
 import Link from "next/link"
-import { PrimaryButton } from "../ui/buttons"
+import { PrimaryButton, SecondaryButton, TextButton } from "../ui/buttons"
 
 export const Header  = ()=>{
     return <div className="flex items-center justify-center py-4 gap-40" >
@@ -12,14 +12,15 @@ export const Header  = ()=>{
         <div className="flex px-4 gap-5 centerContent  border-2 border-black" >
         <i style={{WebkitTextStroke : "1px"}} className="bi bi-search   h-fit  font-bold   "></i>
         <input className="w-[400px] outline-none h-fit "  />
+        <TextButton className="border-stone-400" >Search</TextButton>
         </div>
     </div>
         <div className="flex gap-6" >
             <PrimaryButton>SELL</PrimaryButton>
-            <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none" >SHOP</PrimaryButton></Link>
-            <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none" >READ</PrimaryButton></Link>
-            <PrimaryButton>LOGIN</PrimaryButton>
-            <PrimaryButton>SITN UP</PrimaryButton>
+            <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none " >SHOP</PrimaryButton></Link>
+            <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none " >READ</PrimaryButton></Link>
+            <TextButton className="border-stone-500" >LOGIN</TextButton>
+            <SecondaryButton  >SITN UP</SecondaryButton>
         </div>
     </div>
 }
