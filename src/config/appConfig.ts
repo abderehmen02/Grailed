@@ -4,6 +4,7 @@ export const appConfig = {
         drycleanonly : "/drycleanonly" ,
         designers  : "/designers" ,
         categories : "/categories" ,
-        collections : "/collections"
+        collections : "/collections" ,
+        sell : "/sell"
     }
 }
