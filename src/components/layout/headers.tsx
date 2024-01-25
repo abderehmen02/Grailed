@@ -5,12 +5,12 @@ import { PrimaryButton } from "../ui/buttons"
 export const Header  = ()=>{
     return <div className="flex items-center justify-center py-4 gap-8" >
     <div className="flex gap-4" >
-        <video poster="/logo.jpg" className="Logo-module__image___3LWEN"  autoPlay playsInline loop >
+        <video src="/logo.mp4" poster="/logo.jpg" className="max-w-[13rem]"  autoPlay={true} playsInline={true} loop={true} >
             <source src="/logo.webm" type="video/webm"/>
             <source src="/logo.mp4" type="video/mp4"/>
         </video>
         <div className="flex" >
-        <input/>
+        <textarea/>
         </div>
     </div>
         <div>
