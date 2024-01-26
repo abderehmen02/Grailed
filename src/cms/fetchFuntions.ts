@@ -1,10 +1,7 @@
+import { ProductStyle } from "@/app/(marketing)/_components/styles"
 import { client } from "./sanity-init"
 import imageUrlBuilder from "@sanity/image-url"
 
-type ProductStyle = {
-    name : string ,
-    image : string
-}
 
 const builder = imageUrlBuilder(client)
 

@@ -1,12 +1,12 @@
 import { fetchStyles } from "@/cms/fetchFuntions";
 import Image from "next/image";
+import { Styles } from "./_components/styles";
 
 export default async  function Home() {
 const styles = await fetchStyles()
-console.log(styles);
 
   return (
-    <main>
+    <main className="flex flex-col w-full items-center jsutify-center" >
       <div className="hero flex items-center justify-center w-full h-[600px] relative" >
         <video className="w-full absolute top-0 left-0 z-0 object-cover h-full"  poster="/heroVideoPoster.jpg" src="/heroVideo.mp4" autoPlay={true} playsInline={true} loop={true} ></video>
         <div className="flex flex-col gap-6 items-center justify-center text-white z-10" >
@@ -18,6 +18,7 @@ console.log(styles);
           </div>
         </div>
       </div>
+      <Styles styles={styles || [] } />
     </main>
   );
 }
