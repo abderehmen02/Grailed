@@ -1,6 +1,10 @@
+import { fetchStyles } from "@/cms/fetchFuntions";
 import Image from "next/image";
 
-export default function Home() {
+export default async  function Home() {
+const styles = await fetchStyles()
+console.log(styles);
+
   return (
     <main>
       <div className="hero flex items-center justify-center w-full h-[600px] relative" >

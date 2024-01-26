@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^6.12.1",
+    "@sanity/image-url": "^1.0.2",
     "bootstrap-icons": "^1.11.3",
     "clsx": "^2.1.0",
     "http-status-codes": "^2.3.0",
     "mongoose": "^8.1.1",
     "next": "14.1.0",
+    "picosanity": "^4.1.1",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "^2.2.1"
