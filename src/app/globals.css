@@ -13,3 +13,6 @@
   align-items: center;
   justify-content: center;
 }
+.pageMaxWidth {
+  max-width: 1400px;
+}
