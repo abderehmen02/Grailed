@@ -1,6 +1,4 @@
-import { AuthServices } from "@/types/auth";
 import mongoose , {model , mongo, Schema} from "mongoose";
-import { googleUserModel } from "./googleUser";
 
 
 export interface UserDb { 
