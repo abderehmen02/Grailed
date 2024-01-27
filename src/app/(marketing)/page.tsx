@@ -1,10 +1,14 @@
 import { fetchStyles } from "@/cms/fetchFuntions";
 import Image from "next/image";
 import { Styles } from "./_components/styles";
+import { signIn } from "next-auth/react";
+import { GoogleSignIn, SignOut } from "@/components/auth/components";
+import { getServerSession } from "next-auth";
 
 export default async  function Home() {
 const styles = await fetchStyles()
-
+const session = await getServerSession()
+console.log("session" , session)
   return (
     <main className="flex flex-col w-full items-center jsutify-center" >
       <div className="hero flex items-center justify-center w-full h-[600px] relative" >
@@ -19,6 +23,8 @@ const styles = await fetchStyles()
         </div>
       </div>
       <Styles styles={styles || [] } />
+      <GoogleSignIn/>
+      <SignOut/>
     </main>
   );
 }

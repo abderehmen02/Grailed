@@ -5,6 +5,8 @@ export const appConfig = {
         designers  : "/designers" ,
         categories : "/categories" ,
         collections : "/collections" ,
-        sell : "/sell"
-    }
+        sell : "/sell" ,
+    } ,
+    url : "http://localhost:3000"
+
 }
