@@ -18,7 +18,6 @@ export const sanityImageUrl = (SanityImage : object)=>{
 
 export const fetchStyles : ()=>Promise<ProductStyle[] | void> = async ()=>{
     const styles = await   client.fetch('*[_type == $someType]', {someType: 'styles'})  as {title : string  , image : object}[]
-    console.log("styles" , styles)
     if(!styles) return console.log("can not get posts from sanity!!")  
     return styles.map((style : {title : string , image : object} )=>({ name : style.title , image : sanityImageUrl(style.image) as string  }))
   }
