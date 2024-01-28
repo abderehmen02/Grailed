@@ -23,8 +23,8 @@ export const POST   = asyncWrapperApi(async (req  ) =>{
         } )
         const googleUsersWithSameEmail = await googleUserModel().findOne({email : parsedBodyResult.data.email})
         if(googleUsersWithSameEmail)    return apiResponse(StatusCodes.OK , {exist : true})
- 
             const usersWithSameEmail = await userModel().findOne({email :parsedBodyResult.data.email })
             if(usersWithSameEmail) return apiResponse(StatusCodes.OK , {exist : true})
+
             return apiResponse(StatusCodes.OK , {exist : false})
         })
