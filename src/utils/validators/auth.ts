@@ -1,4 +1,4 @@
-import { signUpZodErrors , genderType, signInFieldError, signInFieldErrors } from "@/types/errors/auth"
+import { signUpZodErrors ,  signInFieldError, signInFieldErrors } from "@/types/errors/auth"
 import {z} from "zod"
 import { emailRegEx } from "@/config/authConfig"
 
@@ -9,7 +9,9 @@ export const signUpValidator = z.object({
     email : z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
     phoneNumber : z.string() 
 }) 
-
+export const isEmailExistsValidator = z.object({
+    email:  z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
+})
 
 export const signInValidator = z.object({
     userName : z.string().min(4 , signInFieldErrors.invalidUsername.shortMessage ).max(50    ,  signInFieldErrors.invalidUsername.shortMessage) ,
