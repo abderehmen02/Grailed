@@ -39,7 +39,7 @@ const PrimaryInput: React.FC<InputProps> = forwardRef<HTMLInputElement, InputPro
       >
         {label && (
           <label
-            className={cn('text-sm px-2 capitalize' , {"text-red-500" : error})}
+            className={cn('text-sm font-bold capitalize' , {"text-red-500" : error})}
           >
             {label}
           </label>
@@ -47,7 +47,7 @@ const PrimaryInput: React.FC<InputProps> = forwardRef<HTMLInputElement, InputPro
         <input
           ref={ref}
           className={cn(
-            'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  ' , {"border-2 border-red-400 outline-red-500" : error}
+            'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  ' , {"border-2 border-red-400 outline-red-500" : error}
           )}
           placeholder={placeholder}
           {...props}

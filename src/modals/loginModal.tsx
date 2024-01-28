@@ -26,7 +26,7 @@ export default function LoginModal() {
     </div>
     <div style={{borderTop: '0.01px solid #b1b3b1' }} className="w-full" ></div>
     <div className="flex flex-col gap-4" >
-    <SecondaryButton onClick={openSignUpModal} className="font-bold" >CREATE ACCOUNT WITH EMAIL</SecondaryButton>
+    <SecondaryButton onClick={()=>{openSignUpModal() , close() }} className="font-bold" >CREATE ACCOUNT WITH EMAIL</SecondaryButton>
     <p className="text-xs" >Already have an account? <span className="font-bold" >Log in</span></p>
     </div>
 <p className="font-semibold text-center text-xs" >    By creating an account, I accept Grailed's <span className="font-bold" >Terms of Service</span>. For Grailed's<span className="font-bold" > Privacy Policy</span>, click here.</p>

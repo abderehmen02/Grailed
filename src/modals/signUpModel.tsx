@@ -6,12 +6,14 @@ import {Box}from "@mui/material";
 import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
 import { PrimaryInput } from "@/ui/input";
 import { useState } from "react";
-import { PrimaryButton } from "@/components/ui/buttons";
+import { PrimaryButton, SecondaryButton } from "@/components/ui/buttons";
 import { SignUpFields, signUpFieldError } from "@/types/errors/auth";
 import { useSignUpModal } from "@/store/signUpModel";
+import { cn } from "@/lib/tailwind";
+import { boolean } from "zod";
 
 
-export default function LoginModal() {
+export default function SignUpModal() {
     const { isOpen , close , open}= useSignUpModal()
     const [password , setPassword ] = useState("")
     const [email , setEmail ] = useState("")
@@ -25,7 +27,7 @@ export default function LoginModal() {
     </div>
     <PrimaryInput error={fieldsErrors.find(item =>item.field === SignUpFields.EMAIL)?.message} value={email} onChange={(e)=>setEmail(e.target.value)} label="Email Address" />
     <PrimaryInput error={fieldsErrors.find(item =>item.field === SignUpFields.PASSWORD)?.message} value={password} onChange={(e)=>setPassword(e.target.value)} label="Password" />
-    <PrimaryButton >SIGN UP</PrimaryButton>
+    <SecondaryButton aria-disabled={email === ""} className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : email === ""  } )} >SIGN UP</SecondaryButton>
 </Box>
 </Modal>
   );
