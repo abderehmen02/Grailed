@@ -3,7 +3,7 @@ import { signIn } from "next-auth/react"; // or "next-auth/react"
 import { Modal } from "@mui/material";
 import { useLoginModal } from "@/store/loginModal";
 import {Box}from "@mui/material";
-import { FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
+import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
 
 
 export default function LoginModal() {
@@ -15,9 +15,11 @@ export default function LoginModal() {
     <h3 className="text-black font-semibold text-3xl" >Create an Account</h3>
     <p className="text-xs" >By creating an account on Grailed you'll be able to buy, sell, comment, and more.</p>
     </div>
-    <div >
-        <GoogleSignInButton />
+    <div className="flex flex-col gap-3" >
         <FacebookSignInButton/>
+        <AppleSignInButton/>
+        <GoogleSignInButton />
+
     </div>
 </Box>
 </Modal>
