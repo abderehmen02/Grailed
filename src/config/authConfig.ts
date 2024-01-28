@@ -1,6 +1,7 @@
 export const authConfig = {
     tokenCookieName : "authToken" ,
-    tokenExpiresIn : "2d"
+    tokenExpiresIn : "2d" ,
+    bycryptSaltRounds : 10
 }
 
 
