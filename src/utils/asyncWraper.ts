@@ -10,6 +10,7 @@ export function asyncWrapperApi(
       try {
         console.log("connecting to db")
         await connectDbPromise
+        console.log("connnected to mongodb")
         const result = await fn(req);
         return result;
       } catch (error) {

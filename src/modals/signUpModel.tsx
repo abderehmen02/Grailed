@@ -14,6 +14,7 @@ import { boolean } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios"
 import { countries } from "@/constants/countries";
+import { useAuth } from "@/hooks/auth";
 
 
 const stepsText : {title : string , descreption : string }[] = [{
@@ -37,9 +38,9 @@ export default function SignUpModal() {
     const [userNameFieldError , setUserNameFieldError ] = useState<string | undefined>(undefined)
     const [signUpStep , setSignUpStep ] = useState(0)
     const [selectedCountry, setselectedCountry   ] = useState(countries[10])
+    const {signUp} = useAuth()
+    const [phoneNumber , setPhoneNumber ] = useState("")
 
-
-console.log("sign up stem" , signUpStep ,stepsText[signUpStep])
 
     const { mutate : isEmailExistsReq , error , isPending :isEmailExistsPending} = useMutation({
         mutationFn: async ()=>{
@@ -48,7 +49,6 @@ if(password.length < 4){
     throw new Error("password too small")
 }
 const res = await  axios.post("/api/isEmailExists"  , {email})
-console.log("res " , res)
 if(res?.data?.exist){
 
     setEmailFieldError("email already exists")
@@ -60,7 +60,8 @@ return true
         console.log("succuss")
         setSignUpStep((val)=>++val)
     } , 
-    onError: ()=>{
+    onError: (err)=>{
+        console.log("err" , err)
         setEmailFieldError("can not validate the email")
     }
     }) 
@@ -126,12 +127,14 @@ const handleSecondStep = ()=>{
 </FormControl>
 <TextField
 fullWidth
+value={phoneNumber}
+onChange={(e)=>setPhoneNumber(e.target.value)}
           label="With normal TextField"
           id="outlined-start-adornment"
           InputProps={{
             startAdornment: <InputAdornment position="start">{selectedCountry.code }</InputAdornment>,
           }}
-        /><SecondaryButton   onClick={handleSecondStep} aria-disabled={userName.length < 4 || isUserNameExistPending} className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : userName.length < 4   || isUserNameExistPending  } )} >SIGN UP</SecondaryButton> 
+        /><SecondaryButton   onClick={()=>{signUp({userName , password , country : selectedCountry.country , phoneNumber ,email})}} aria-disabled={userName.length < 4 || isUserNameExistPending} className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : userName.length < 4   || isUserNameExistPending  } )} >SIGN UP</SecondaryButton> 
 </>
 }
 

@@ -14,10 +14,12 @@ import { apiResponse, errorMessage } from "@/utils/api"
 
 
 export const POST   = asyncWrapperApi(async (req  ) =>{
+  console.log("getting the request")
     const body = await  req.json()
+    console.log("body")
         const  parsedBodyResult = signUpValidator.safeParse(body)
-        
-        if(parsedBodyResult.success === false)  return new Response(JSON.stringify(parsedBodyResult)  ,{
+        console.log("pare" , parsedBodyResult)
+        if(parsedBodyResult.success === false)  return new Response(JSON.stringify(parsedBodyResult.error)  ,{
             status : StatusCodes.BAD_REQUEST , 
         } )
         const googleUsersWithSameEmail = await googleUserModel().findOne({email : parsedBodyResult.data.email})
@@ -28,6 +30,7 @@ export const POST   = asyncWrapperApi(async (req  ) =>{
             const newPassword = await bycrypt.hash(parsedBodyResult.data.password  , authConfig.bycryptSaltRounds )
             parsedBodyResult.data.password = newPassword 
             const newUserDb = await userModel().create({ ...parsedBodyResult.data, verified : false })
+            console.log("new user db" , newUserDb)
             const newUser = {...newUserDb._doc}
             delete newUser.password
             const token =  generateLoginToken({ userId:  newUser._id.toString()})

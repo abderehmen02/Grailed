@@ -17,7 +17,6 @@ import { apiResponse, errorMessage } from "@/utils/api"
 export const POST   = asyncWrapperApi(async (req  ) =>{
     const body = await  req.json()
         const  parsedBodyResult = isEmailExistsValidator.safeParse(body)
-        
         if(parsedBodyResult.success === false)  return new Response(JSON.stringify(parsedBodyResult)  ,{
             status : StatusCodes.BAD_REQUEST , 
         } )
