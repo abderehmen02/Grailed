@@ -13,6 +13,11 @@ export const isEmailExistsValidator = z.object({
     email:  z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
 })
 
+export const isValidUserNameValidator = z.object({
+    userName:  z.string() ,
+})
+
+
 export const signInValidator = z.object({
     userName : z.string().min(4 , signInFieldErrors.invalidUsername.shortMessage ).max(50    ,  signInFieldErrors.invalidUsername.shortMessage) ,
     password : z.string().min(8,     signInFieldErrors.invalidPassword.shortMessage ) ,

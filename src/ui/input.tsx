@@ -11,6 +11,7 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
   helperText?: string;
   children?: React.ReactNode;
+  inputClassName? : string
   placeholder?: string;
 };
 
@@ -20,6 +21,7 @@ const PrimaryInput: React.FC<InputProps> = forwardRef<HTMLInputElement, InputPro
       className,
       action,
       containerStyle,
+      inputClassName ,
       label,
       helperText,
       error,
@@ -47,7 +49,7 @@ const PrimaryInput: React.FC<InputProps> = forwardRef<HTMLInputElement, InputPro
         <input
           ref={ref}
           className={cn(
-            'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  ' , {"border-2 border-red-400 outline-red-500" : error}
+            'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400  ' , {"border-2 border-red-400 outline-red-500" : error} , inputClassName
           )}
           placeholder={placeholder}
           {...props}
