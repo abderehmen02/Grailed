@@ -1,6 +1,6 @@
 "use client"
 import { signIn } from "next-auth/react"; // or "next-auth/react"
-import { Checkbox, Modal } from "@mui/material";
+import { Checkbox, FormControl, InputAdornment, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
 import { useLoginModal } from "@/store/loginModal";
 import {Box}from "@mui/material";
 import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
@@ -13,6 +13,7 @@ import { cn } from "@/lib/tailwind";
 import { boolean } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios"
+import { countries } from "@/constants/countries";
 
 
 const stepsText : {title : string , descreption : string }[] = [{
@@ -35,6 +36,9 @@ export default function SignUpModal() {
     const [userName , setUserName ] = useState("")
     const [userNameFieldError , setUserNameFieldError ] = useState<string | undefined>(undefined)
     const [signUpStep , setSignUpStep ] = useState(0)
+    const [selectedCountry, setselectedCountry   ] = useState(countries[10])
+
+
 console.log("sign up stem" , signUpStep ,stepsText[signUpStep])
 
     const { mutate : isEmailExistsReq , error , isPending :isEmailExistsPending} = useMutation({
@@ -102,6 +106,35 @@ const handleSecondStep = ()=>{
 { signUpStep === 1 && <><PrimaryInput  inputClassName={cn({"border-green-500 focus:border-green-500 focus:outline-none focus:ring-0 border-2" : userName.length >= 4 && !userNameFieldError})}  value={userName} onChange={(e)=>{setUserName(e.target.value) ; isUserNameExist(e.target.value)}} error={userNameFieldError} label="Username" ></PrimaryInput>
 <SecondaryButton   onClick={handleSecondStep} aria-disabled={userName.length < 4 || isUserNameExistPending} className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : userName.length < 4   || isUserNameExistPending  } )} >SIGN UP</SecondaryButton> 
 </>}
+{ signUpStep === 2 && <>
+
+
+
+    <FormControl fullWidth>
+  <InputLabel id="demo-simple-select-label">Choose Your Country</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="demo-simple-select"
+    value={selectedCountry.country}
+    label="Choose Your Country"
+    onChange={(e)=>setselectedCountry(countries.find(countryObj=>countryObj.country === e.target.value) || countries[10] )}
+  >
+{
+    countries.map(country=><MenuItem value={country.country} >{country.country}</MenuItem>)
+}
+  </Select>
+</FormControl>
+<TextField
+fullWidth
+          label="With normal TextField"
+          id="outlined-start-adornment"
+          InputProps={{
+            startAdornment: <InputAdornment position="start">{selectedCountry.code }</InputAdornment>,
+          }}
+        /><SecondaryButton   onClick={handleSecondStep} aria-disabled={userName.length < 4 || isUserNameExistPending} className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : userName.length < 4   || isUserNameExistPending  } )} >SIGN UP</SecondaryButton> 
+</>
+}
+
 
 </Box>
 </Modal>
