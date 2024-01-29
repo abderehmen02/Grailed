@@ -12,8 +12,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col w-full items-center jsutify-center">
-      <SignUpModal/>
-      <LoginModal/>
+ 
       <div className="hero flex items-center justify-center w-full h-[600px] relative">
       <video
   className="w-full absolute top-0 left-0 z-0 object-cover h-full"

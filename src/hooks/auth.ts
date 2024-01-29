@@ -10,6 +10,7 @@ export const useAuth  = ()=>{
     const signUp = async (data : UserDb)=>{
     const res = await axios.post("/api/signUp" , data )
     if(res.status === StatusCodes.CREATED){
+        toast.success("account has been created!")
         router.push("/for-sell")
     }
     else toast.error("somme error hapened! please try again")
