@@ -10,10 +10,18 @@ export const Header  = ()=>{
     return <div>
     <div className="flex border-whinGray border-b-2 items-center justify-center py-6 gap-40" >
     <div className="flex gap-4" >
-        <video  poster="/logo.jpg" className="max-w-[13rem] border-2 b outline-none border-none"  autoPlay={true} playsInline={true} loop={true} >
-            <source src="/logo.webm" type="video/webm"/>
-            <source src="/logo.mp4" type="video/mp4"/>
-        </video>
+    <video 
+  poster="https://assets.grailed.com/logo.jpg" 
+  className="w-[140px] h-auto"  
+
+  autoPlay 
+  loop 
+  playsInline 
+  muted
+>
+  <source src="https://assets.grailed.com/logo.webm" type="video/webm" />
+  <source src="https://assets.grailed.com/logo.mp4" type="video/mp4" />
+</video>
         <div className="flex p-1 gap-5  centerContent  border-2 border-black" >
         <i style={{WebkitTextStroke : "1px"}} className="bi bi-search  mx-4 h-fit  font-bold   "></i>
         <input placeholder="Search" className="w-[400px] outline-none h-fit "  />
