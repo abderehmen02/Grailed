@@ -16,3 +16,8 @@
 .pageMaxWidth {
   max-width: 1400px;
 }
+
+
+.border-1 {
+  border-width:  1px;
+}

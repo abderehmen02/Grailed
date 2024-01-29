@@ -1,6 +1,11 @@
 import { fetchStyles } from "@/cms/fetchFuntions";
 import Image from "next/image";
 import { Styles } from "./_components/styles";
+import { signIn } from "next-auth/react";
+import {  SignOut } from "@/components/auth/components";
+import LoginModal from "@/modals/loginModal";
+import SignUpModal from "@/modals/signUpModel";
+
 
 export default async function Home() {
   const styles = await fetchStyles();
