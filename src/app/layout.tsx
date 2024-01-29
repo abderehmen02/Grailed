@@ -5,7 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import { ReactQueryProvider } from "@/providers/react-query";
 import { ToasterProvider } from "@/providers/sonner";
 import SignUpModal from "@/modals/signUpModel";
-import LoginModal from "@/modals/loginModal";
+import LoginModal from "@/modals/createAccountModal";
 import LoginProvidersModal from "@/modals/loginProviderModal";
 
 const inter = Inter({ subsets: ["latin"] });

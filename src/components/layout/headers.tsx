@@ -2,15 +2,15 @@
 import { appConfig } from "@/config/appConfig"
 import Link from "next/link"
 import { PrimaryButton, SecondaryButton, TextButton } from "../ui/buttons"
-import { useLoginModal } from "@/store/loginModal"
-import { useSignUpModal } from "@/store/signUpModel"
+
 import { useCookies } from 'next-client-cookies';
 import { authConfig } from "@/config/authConfig"
 import { useRouter } from "next/navigation"
+import { useCreateAccountModal } from "@/store/authModals";
 
 export const Header  = ()=>{
     const cookies = useCookies()
-    const {open} = useLoginModal()
+    const {open} = useCreateAccountModal()
     const router = useRouter()
     const token = cookies.get(authConfig.tokenCookieName)
     console.log("token" , token)

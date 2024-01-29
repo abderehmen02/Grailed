@@ -1,18 +1,15 @@
 "use client"
 import { signIn } from "next-auth/react"; // or "next-auth/react"
 import { Modal } from "@mui/material";
-import { useLoginModal } from "@/store/loginModal";
 import {Box}from "@mui/material";
 import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
 import { SecondaryButton } from "@/components/ui/buttons";
-import { useSignUpModal } from "@/store/signUpModel";
-import { useLoginProviderModal } from "@/store/loginProvidersModal";
-import LoginProvidersModal from "./loginProviderModal";
+import { useCreateAccountModal, useLoginProviderModal, useSignUpWithEmailModal } from "@/store/authModals";
 
 
-export default function LoginModal() {
-    const { isOpen , close , open}= useLoginModal()
-    const {open : openSignUpModal} = useSignUpModal()
+export default function LoginProvidersModal() {
+    const { isOpen , close , open}= useCreateAccountModal()
+    const {open : openSignUpWithEmailModal} = useSignUpWithEmailModal()
     const {open : openLoginProvidersModal} = useLoginProviderModal()
   return (
     <Modal  open={isOpen} onClose={close}  >
@@ -29,7 +26,7 @@ export default function LoginModal() {
     </div>
     <div style={{borderTop: '0.01px solid #b1b3b1' }} className="w-full" ></div>
     <div className="flex flex-col gap-4" >
-    <SecondaryButton onClick={()=>{openSignUpModal() , close() }} className="font-bold" >CREATE ACCOUNT WITH EMAIL</SecondaryButton>
+    <SecondaryButton onClick={()=>{openSignUpWithEmailModal() , close() }} className="font-bold" >CREATE ACCOUNT WITH EMAIL</SecondaryButton>
     <p className="text-xs" >Already have an account? <span onClick={()=>{  close(); openLoginProvidersModal() }} className="font-bold cursor-pointer" >Log in</span></p>
     </div>
 <p className="font-semibold text-center text-xs" >    By creating an account, I accept Grailed&lsquo;s <span className="font-bold" >Terms of Service</span>. For Grailed&lsquo;s<span className="font-bold" > Privacy Policy</span>, click here.</p>

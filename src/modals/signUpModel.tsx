@@ -1,20 +1,20 @@
 "use client"
 import { signIn } from "next-auth/react"; // or "next-auth/react"
 import { Checkbox, FormControl, InputAdornment, InputLabel, MenuItem, Modal, Select, TextField } from "@mui/material";
-import { useLoginModal } from "@/store/loginModal";
+
 import {Box}from "@mui/material";
 import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
 import { PrimaryInput } from "@/ui/input";
 import { useLayoutEffect, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/buttons";
 import { SignUpFields, signUpFieldError } from "@/types/errors/auth";
-import { useSignUpModal } from "@/store/signUpModel";
 import { cn } from "@/lib/tailwind";
 import { boolean } from "zod";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios"
 import { countries } from "@/constants/countries";
 import { useAuth } from "@/hooks/auth";
+import { useSignUpWithEmailModal } from "@/store/authModals";
 
 
 const stepsText : {title : string , descreption : string }[] = [{
@@ -29,7 +29,7 @@ const stepsText : {title : string , descreption : string }[] = [{
 }]
 
 export default function SignUpModal() {
-    const { isOpen , close , open}= useSignUpModal()
+    const { isOpen , close , open}= useSignUpWithEmailModal()
     const [password , setPassword ] = useState("")
     const [email , setEmail ] = useState("")
     const [emailFieldError, setEmailFieldError] = useState("")

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Styles } from "./_components/styles";
 import { signIn } from "next-auth/react";
 import {  SignOut } from "@/components/auth/components";
-import LoginModal from "@/modals/loginModal";
+import LoginModal from "@/modals/createAccountModal";
 import SignUpModal from "@/modals/signUpModel";
 
 

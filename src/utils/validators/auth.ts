@@ -20,11 +20,12 @@ export const isValidUserNameValidator = z.object({
 
 
 export const signInValidator = z.object({
-    userName : z.string().min(4 , signInFieldErrors.invalidUsername.shortMessage ).max(50    ,  signInFieldErrors.invalidUsername.shortMessage) ,
+    email : z.string().email() ,
     password : z.string().min(8,     signInFieldErrors.invalidPassword.shortMessage ) ,
 
 })
 
+export type signInData = z.infer<typeof signInValidator>
 
 export const getUsersValidator = z.object({
     users: z.array(z.string())
