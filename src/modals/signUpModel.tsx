@@ -120,7 +120,7 @@ const handleSecondStep = ()=>{
     onChange={(e)=>setselectedCountry(countries.find(countryObj=>countryObj.country === e.target.value) || countries[10] )}
   >
 {
-    countries.map(country=><MenuItem value={country.country} >{country.country}</MenuItem>)
+    countries.map(country=><MenuItem key={country.iso} value={country.country} >{country.country}</MenuItem>)
 }
   </Select>
 </FormControl>
