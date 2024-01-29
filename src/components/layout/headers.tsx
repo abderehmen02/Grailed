@@ -4,9 +4,16 @@ import Link from "next/link"
 import { PrimaryButton, SecondaryButton, TextButton } from "../ui/buttons"
 import { useLoginModal } from "@/store/loginModal"
 import { useSignUpModal } from "@/store/signUpModel"
+import { useCookies } from 'next-client-cookies';
+import { authConfig } from "@/config/authConfig"
+import { useRouter } from "next/navigation"
 
 export const Header  = ()=>{
+    const cookies = useCookies()
     const {open} = useLoginModal()
+    const router = useRouter()
+    const token = cookies.get(authConfig.tokenCookieName)
+    console.log("token" , token)
     return <div>
     <div className="flex border-whinGray border-b-2 items-center justify-center py-6 gap-40" >
     <div className="flex gap-4" >
@@ -29,7 +36,7 @@ export const Header  = ()=>{
         </div>
     </div>
         <div className="flex gap-3" >
-            <PrimaryButton onClick={open} className="font-semibold">SELL</PrimaryButton>
+            <PrimaryButton onClick={()=> token ? router.push(appConfig.routes.forSale ) : open() } className="font-semibold">SELL</PrimaryButton>
             <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none  font-semibold" >SHOP</PrimaryButton></Link>
             <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none font-semibold " >READ</PrimaryButton></Link>
             <TextButton className="border-stone-500 font-semibold" >LOGIN</TextButton>

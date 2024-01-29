@@ -29,7 +29,7 @@ export const POST   = asyncWrapperApi(async (req  ) =>{
             if(usersWithSameEmail) return apiResponse(StatusCodes.BAD_REQUEST , errorMessage(signUpZodErrors.EmailExists.shortMessage))
             const newPassword = await bycrypt.hash(parsedBodyResult.data.password  , authConfig.bycryptSaltRounds )
             parsedBodyResult.data.password = newPassword 
-            const newUserDb = await userModel().create({ ...parsedBodyResult.data, verified : false })
+            const newUserDb = await userModel().create({ ...parsedBodyResult.data , yearJoined : String(new Date().getFullYear()) , verified : false })
             console.log("new user db" , newUserDb)
             const newUser = {...newUserDb._doc}
             delete newUser.password

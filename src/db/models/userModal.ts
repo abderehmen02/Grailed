@@ -1,25 +1,28 @@
 import mongoose , {model , mongo, Schema} from "mongoose";
 
 
-export interface UserDb { 
+export type  UserDb =  { 
     email : string ,
     password: string,
     country : string ,
     phoneNumber : string ,
    userName : string 
+   
 }
 
 
-const userSchema = new mongoose.Schema<UserDb>({
+
+const userSchema = new mongoose.Schema<UserDb & {yearJoined : string } >({
 email : {type : String , required : true} ,
 password : {type : String , required : true} ,
 country : {type : String , required  : true} ,
 phoneNumber : {type : String , required : true } ,
-userName : {type : String   , required : true}
+userName : {type : String   , required : true} ,
+yearJoined : {type : String , required : true}
   });
   
 export const userModel = ()=>{
-    return mongoose.models?.user || model<UserDb>("user" , userSchema)
+    return mongoose.models?.user || model<UserDb & {yearJoined :string }>("user" , userSchema)
 }
 
 
