@@ -1,4 +1,3 @@
-
 import { signUpValidator } from "@/utils/validators/auth"
 import StatusCodes from 'http-status-codes'
 import {  generateLoginToken } from "@/utils/auth/tokens"

@@ -7,7 +7,8 @@ export const signUpValidator = z.object({
     password : z.string().min(8,     signUpZodErrors.shortPassword.shortMessage ) ,
     country : z.string() ,
     email : z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
-    phoneNumber : z.string() 
+    phoneNumber : z.string() ,
+    userName : z.string().min(4)
 }) 
 export const isEmailExistsValidator = z.object({
     email:  z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
