@@ -3,14 +3,11 @@ import Image from "next/image";
 import { Styles } from "./_components/styles";
 import { signIn } from "next-auth/react";
 import {  SignOut } from "@/components/auth/components";
-import { getServerSession } from "next-auth";
 import LoginModal from "@/modals/loginModal";
 import SignUpModal from "@/modals/signUpModel";
 
 export default async  function Home() {
 const styles = await fetchStyles()
-const session = await getServerSession()
-console.log("session" , session)
   return (
     <main className="flex flex-col w-full items-center jsutify-center" >
       <LoginModal/>
