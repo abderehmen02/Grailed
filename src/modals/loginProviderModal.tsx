@@ -26,7 +26,7 @@ export default function LoginProvidersModal() {
     <div style={{borderTop: '0.01px solid #b1b3b1' }} className="w-full" ></div>
     <div className="flex flex-col gap-4" >
     <SecondaryButton onClick={()=>{openLoginWithEmailModal() , close() }} className="font-bold" >Log In With Email</SecondaryButton>
-    <p className="text-xs" >Don't have an account?  <span className="font-bold" >Sign Up</span></p>
+    <p className="text-xs" >Don&#39;t have an account?  <span className="font-bold" >Sign Up</span></p>
     </div>
 <p className="font-semibold text-center text-xs" >    By creating an account, I accept Grailed&lsquo;s <span className="font-bold" >Terms of Service</span>. For Grailed&lsquo;s<span className="font-bold" > Privacy Policy</span>, click here.</p>
 </Box>
