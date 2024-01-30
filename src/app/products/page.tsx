@@ -1,5 +1,7 @@
+import { Header } from "@/components/layout/headers";
+
 export default function Page (){
-    return <div>
-        for sale page rigth here
+    return <div  >
+        <Header/>
     </div>
 }
