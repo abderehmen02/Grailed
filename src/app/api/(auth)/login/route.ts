@@ -13,11 +13,15 @@ import { authConfig } from "@/config/authConfig";
 
 
 export const POST  = asyncWrapperApi(async (req )=>{
+  console.log("getting a req")
     const body = await req.json()
+    console.log("body" , body)
     const parsedBodyResult = signInValidator.safeParse(body)
+    console.log("parsed result" , parsedBodyResult)
     if(!parsedBodyResult.success) return  apiResponse(StatusCodes.BAD_REQUEST , parsedBodyResult.error )
-    const {userName , password} = parsedBodyResult.data
-    const user = await userModel().findOne({userName})
+    const {email , password} = parsedBodyResult.data
+    const user = await userModel().findOne({email})
+    console.log("user" , user) 
     if(!user) return apiResponse(StatusCodes.BAD_REQUEST , errorMessage(signInFieldErrors.noUserFound.shortMessage))
     const isPasswordTrue = await  bycrypt.compare(password , user.password )
     if(!isPasswordTrue)  return apiResponse(StatusCodes.BAD_REQUEST , errorMessage(signInFieldErrors.incorrectPassword.shortMessage) ) 

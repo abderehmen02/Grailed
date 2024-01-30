@@ -19,10 +19,11 @@ export const useAuth  = ()=>{
     }
 
     const signIn : (data : signInData)=>Promise<{message :string }| void>  = async (data : signInData)  =>{
-        const res = await axios.post("/api/signIn" , data)
+        const res = await axios.post("/api/login" , data)
         if(res.status === StatusCodes.CREATED){
             toast.success("Logged in succussfully!")
             router.push(appConfig.routes.forSale)
+            return 
         }
         if(res?.data?.error) {
             toast.error(res.data.error.message)
