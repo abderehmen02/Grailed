@@ -28,7 +28,7 @@ const stepsText : {title : string , descreption : string }[] = [{
     descreption : "To use Grailed, we need to verify your phone number. We will never display this number publicly."
 }]
 
-export default function SignUpModal() {
+export default function SignUpWithEMailModal() {
     const { isOpen , close , open}= useSignUpWithEmailModal()
     const [password , setPassword ] = useState("")
     const [email , setEmail ] = useState("")

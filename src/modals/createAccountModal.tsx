@@ -7,7 +7,7 @@ import { SecondaryButton } from "@/components/ui/buttons";
 import { useCreateAccountModal, useLoginProviderModal, useSignUpWithEmailModal } from "@/store/authModals";
 
 
-export default function LoginProvidersModal() {
+export default function CreateAccountModal() {
     const { isOpen , close , open}= useCreateAccountModal()
     const {open : openSignUpWithEmailModal} = useSignUpWithEmailModal()
     const {open : openLoginProvidersModal} = useLoginProviderModal()

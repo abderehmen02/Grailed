@@ -4,7 +4,7 @@ import { Styles } from "./_components/styles";
 import { signIn } from "next-auth/react";
 import {  SignOut } from "@/components/auth/components";
 import LoginModal from "@/modals/createAccountModal";
-import SignUpModal from "@/modals/signUpModel";
+import SignUpModal from "@/modals/signUpWithEmail";
 
 
 export default async function Home() {
@@ -35,10 +35,10 @@ export default async function Home() {
             brands.
           </h4>
           <div className="flex  gap-11">
-            <button className="p-4 border-2 border-white text-xl font-bold">
+            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
               SHOP MENSWEAR
             </button>
-            <button className="p-4 border-2 border-white text-xl font-bold">
+            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
               SHOP WOMENSWEAR
             </button>
           </div>
