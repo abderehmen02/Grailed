@@ -1,6 +1,5 @@
 import { appConfig } from "@/config/appConfig"
-import { UserDb } from "@/db/models/userModal"
-import { signInData } from "@/utils/validators/auth"
+import { SignUpData, signInData } from "@/utils/validators/auth"
 import axios from "axios"
 import { StatusCodes } from "http-status-codes"
 import { useRouter } from "next/navigation"
@@ -9,7 +8,7 @@ import { toast } from "sonner"
 export const useAuth  = ()=>{
     const router = useRouter()
 
-    const signUp = async (data : UserDb)=>{
+    const signUp = async (data : SignUpData)=>{
     const res = await axios.post("/api/signUp" , data )
     if(res.status === StatusCodes.CREATED){
         toast.success("account has been created!")

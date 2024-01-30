@@ -10,6 +10,9 @@ export const signUpValidator = z.object({
     phoneNumber : z.string() ,
     userName : z.string().min(4)
 }) 
+
+
+export type SignUpData = z.infer<typeof signUpValidator> 
 export const isEmailExistsValidator = z.object({
     email:  z.string().regex(emailRegEx ,      signUpZodErrors.invalidEmail.shortMessage) ,
 })
