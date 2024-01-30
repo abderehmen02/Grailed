@@ -1,17 +1,15 @@
 "use client"
 import { signIn } from "next-auth/react"; // or "next-auth/react"
 import { Modal } from "@mui/material";
-import { useLoginModal } from "@/store/loginModal";
 import {Box}from "@mui/material";
 import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/components/auth/components";
 import { SecondaryButton } from "@/components/ui/buttons";
-import { useSignUpModal } from "@/store/signUpModel";
-import { useLoginProviderModal } from "@/store/loginProvidersModal";
+import { useLoginProviderModal, useLoginWithEmailMoadl } from "@/store/authModals";
 
 
 export default function LoginProvidersModal() {
     const { isOpen , close , open}= useLoginProviderModal()
-    const {open : openSignUpModal} = useSignUpModal()
+    const {open : openLoginWithEmailModal} = useLoginWithEmailMoadl()
   return (
     <Modal  open={isOpen} onClose={close}  >
         <Box sx={{bgcolor : 'white' , position : "absolute" , top : "50%" , left : "50%"   , transform: 'translate(-50%, -50%)' , width : '400px' , height : "600px" , display : "flex" , justifyContent : "center" , flexDirection: "column" , paddingX : "60px" , gap : "32px" }}  >
@@ -27,7 +25,7 @@ export default function LoginProvidersModal() {
     </div>
     <div style={{borderTop: '0.01px solid #b1b3b1' }} className="w-full" ></div>
     <div className="flex flex-col gap-4" >
-    <SecondaryButton onClick={()=>{openSignUpModal() , close() }} className="font-bold" >Log In With Email</SecondaryButton>
+    <SecondaryButton onClick={()=>{openLoginWithEmailModal() , close() }} className="font-bold" >Log In With Email</SecondaryButton>
     <p className="text-xs" >Don't have an account?  <span className="font-bold" >Sign Up</span></p>
     </div>
 <p className="font-semibold text-center text-xs" >    By creating an account, I accept Grailed&lsquo;s <span className="font-bold" >Terms of Service</span>. For Grailed&lsquo;s<span className="font-bold" > Privacy Policy</span>, click here.</p>
