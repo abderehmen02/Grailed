@@ -6,7 +6,7 @@ export const appConfig = {
         categories : "/categories" ,
         collections : "/collections" ,
         sell : "/sell" ,
-        forSale : "/for-sale"
+        forSale : "/products"
     } ,
     url : "http://localhost:3000"
 

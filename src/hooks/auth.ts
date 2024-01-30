@@ -1,4 +1,5 @@
 import { appConfig } from "@/config/appConfig"
+import { useLoginWithEmailMoadl, useSignUpWithEmailModal } from "@/store/authModals"
 import { SignUpData, signInData } from "@/utils/validators/auth"
 import axios, { AxiosError } from "axios"
 import { StatusCodes } from "http-status-codes"
@@ -7,10 +8,12 @@ import { toast } from "sonner"
 
 export const useAuth  = ()=>{
     const router = useRouter()
-
+    const {close : closeSignUpModal} = useSignUpWithEmailModal()
+    const {close : closeLoginModal} = useLoginWithEmailMoadl()
     const signUp = async (data : SignUpData)=>{
     const res = await axios.post("/api/signUp" , data )
     if(res.status === StatusCodes.CREATED){
+        closeSignUpModal()
         toast.success("account has been created!")
         router.push("/for-sell")
     }
@@ -20,8 +23,8 @@ export const useAuth  = ()=>{
     const signIn : (data : signInData)=>Promise<string | void >  = async (data : signInData)  =>{
     try {
         const res = await axios.post("/api/login" , data)
-        console.log("response" , res)
         if(res.status === StatusCodes.CREATED){
+            closeLoginModal()
             toast.success("Logged in succussfully!")
             router.push(appConfig.routes.forSale)
             return 
