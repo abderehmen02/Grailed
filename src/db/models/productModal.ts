@@ -39,11 +39,14 @@ const colorsArray = [
     "teal", "thistle", "tomato", "turquoise", "violet", "wheat", "white", "white smoke", "yellow", "yellow green"
   ] as const
 
+export const conditions = ["New/Never Wom" , "Gently Used" , "Used" , "Very Wom"] as const
+
 export type SubCategory = typeof subCategories
 export type FirstCategory = typeof productFirstCategories[number]
 export type SecondCategory = typeof productSecondCategories.Menswear[number] | typeof productSecondCategories.Womenswear[number]
 export type Size = typeof sizes["S/M/L"][number] | typeof sizes.US[number] | typeof sizes.IT[number] | typeof sizes.UK[number] | typeof sizes.FR[number]
 export type ProductColor = typeof colorsArray[number]
+export type Condition = typeof conditions[number]
 export type ProductDb = {
     firstCategory : FirstCategory ,
     secondCategory : SecondCategory ,
@@ -51,7 +54,20 @@ export type ProductDb = {
     designer : string,
    size : Size , 
    name : string ,
-    color : string 
+    color : string ,
+    condition  :  Condition ,
+    descreption : string ,
+    brustMeasure : string ,
+    waistMeasure : string ,
+    lengthMeasure : string ,
+    sleeveLengthMeasure : string,
+    shouldersMeasure :string ,
+    tags : string[] ,
+    price : string ,
+    acceptOffer : boolean ,
+    smartPricing : boolean ,
+    floorPrice : string ,
+    adressId :string 
 }
 
 const ProductSchema = new mongoose.Schema<ProductDb  >({
@@ -61,9 +77,24 @@ const ProductSchema = new mongoose.Schema<ProductDb  >({
     designer : {type : String , required : true } ,
     size : {type : String , required : true} ,
     name : {type : String, required : true} ,
-    color : {type : String , required : true}
+    color : {type : String , required : true} ,
+    condition : {type : String , required : true} , 
+    descreption : {type : String , required : true} , 
+    brustMeasure : {type : String , required : true} ,
+    waistMeasure : {type : String , required : true} , 
+    lengthMeasure : {type : String , required : true} ,
+    sleeveLengthMeasure : {type : String , required : true} , 
+    shouldersMeasure : {type : String , required : true} ,
+    tags : {type : [String] , required : true} ,
+    price :{type : String , required : true} ,
+    acceptOffer : {type : Boolean , default: true} ,
+    smartPricing :  {type : Boolean , default : true} ,
+    floorPrice  : {type : String, required: false},
+    adressId : {type : String , required : true} ,
   });
   
+
+
 export const ProductModal = ()=>{
     return mongoose.models?.product || model<ProductDb>("product" , ProductSchema)
 }
