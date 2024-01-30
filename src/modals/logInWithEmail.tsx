@@ -8,7 +8,7 @@ import { AppleSignInButton, FacebookSignInButton, GoogleSignInButton } from "@/c
 import { PrimaryInput } from "@/ui/input";
 import { useLayoutEffect, useState } from "react";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/buttons";
-import { SignUpFields, signUpFieldError } from "@/types/errors/auth";
+import { SignInFields, SignUpFields, signInErrorShortMessages, signInFieldErrors, signUpFieldError } from "@/types/errors/auth";
 import { cn } from "@/lib/tailwind";
 import { boolean } from "zod";
 import { useMutation } from "@tanstack/react-query";
@@ -33,8 +33,15 @@ export default function LogInWithEmailModal() {
     const [phoneNumber , setPhoneNumber ] = useState("")
 
 
-    const { mutate : signInReq , error , isPending :isEmailExistsPending} = useMutation({
+
+const clearErrors = ()=>{
+    setEmailFieldError("")
+    setPasswordFieldError("")
+}
+
+    const { mutate : signInReq , error , isPending :isSignInReqPending} = useMutation({
         mutationFn: async (data : signInData)=>{
+    clearErrors()
 if(password.length < 4){
     setPasswordFieldError("password too small")
     throw new Error("password too small")
@@ -42,12 +49,26 @@ if(password.length < 4){
 else if (email.length < 4){
     setEmailFieldError("email is too small")
 }
-await signIn(data)
+const errorShortMessage =  await signIn(data)
+console.log("short" , errorShortMessage)
+if(errorShortMessage){
+    const errObj = signInFieldErrors[errorShortMessage as signInErrorShortMessages]
+    if(errObj.field === SignInFields.EMAIL){
+        setEmailFieldError(errObj.message)
+    }
+    else if(errObj.field === SignInFields.PASSWORD){
+        setPasswordFieldError(errObj.message)
+    }
+    else {
+        toast.error(errObj.message)
+    }
+}
 return true 
         },
 
 
     onError: (err)=>{
+        console.log("err" , err)
         toast.error("request failed! please try again")
     }
     }) 
@@ -67,7 +88,7 @@ return true
     </div>
     <PrimaryInput name="email" error={emailFieldError.length ? emailFieldError : undefined} value={email} onChange={(e)=>setEmail(e.target.value)} label="Email Address" />
     <PrimaryInput name="password" error={(passwordFieldError.length && password.length )? passwordFieldError : undefined}  onChange={(e)=>setPassword(e.target.value)} label="Password" />
-    <SecondaryButton  onClick={()=>{signInReq({email, password})}} aria-disabled={email.length < 4 || password.length <4 } className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300" : email.length < 4 || password.length < 4 } )} >LOG IN</SecondaryButton> 
+    <SecondaryButton  onClick={()=>{signInReq({email, password})}} aria-disabled={email.length < 4 || password.length <4 || isSignInReqPending } className={cn("w-full" , {"bg-gray-100 text-gray-500 border-gray-300 cursor-not-allowed" : email.length < 4 || password.length < 4 || isSignInReqPending } )} >LOG IN</SecondaryButton> 
 </Box>
 </Modal>
   );

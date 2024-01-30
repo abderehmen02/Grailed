@@ -52,12 +52,12 @@ export enum signUpErrorTypes {
 
 
 export enum SignInFields {
-  USERNAME,
+  EMAIL,
   PASSWORD,
 }
 
 
-export type signInErrorShortMessages = "invalidUsername" | "invalidPassword" | "noUserFound" | "incorrectPassword" 
+export type signInErrorShortMessages = "invalidEmail" | "invalidPassword" | "noUserFound" | "incorrectPassword" 
 
 type signInFieldErrorsType   = {
 [key in signInErrorShortMessages] : {
@@ -71,8 +71,8 @@ type signInFieldErrorsType   = {
 
 export const signInFieldErrors : signInFieldErrorsType  =  {
   invalidPassword  :{shortMessage : 'invalidPassword' , field  : SignInFields.PASSWORD , message : 'Password is not valid' } ,
-  invalidUsername : {shortMessage  : 'invalidUsername' , field : SignInFields.USERNAME , message : 'Username is not valid'} ,
-  noUserFound :  { shortMessage : 'noUserFound' , field : SignInFields.USERNAME , message : 'No user found with this username' } ,
+  invalidEmail : {shortMessage  : 'invalidEmail' , field : SignInFields.EMAIL , message : 'Email is not valid'} ,
+  noUserFound :  { shortMessage : 'noUserFound' , field : SignInFields.EMAIL , message : 'No user found with this email' } ,
   incorrectPassword : {shortMessage : 'incorrectPassword' , field : SignInFields.PASSWORD , message: 'Incorrect password. please try again'}
 } 
 
