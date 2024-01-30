@@ -39,7 +39,7 @@ export const POST  = asyncWrapperApi(async (req )=>{
     response.cookies.set({
         name: authConfig.tokenCookieName,
         value: token,
-        httpOnly: true,
+        httpOnly: false,
       })
 
     return response    

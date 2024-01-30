@@ -4,7 +4,7 @@ import { appConfig } from "@/config/appConfig"
 import Link from "next/link"
 import { PrimaryButton, SecondaryButton, TextButton } from "../ui/buttons"
 import Image from "next/image"
-import { useCookies } from 'next-client-cookies';
+import { useCookies  } from 'next-client-cookies';
 import { authConfig } from "@/config/authConfig"
 import { useRouter } from "next/navigation"
 import { useCreateAccountModal } from "@/store/authModals";
@@ -12,10 +12,9 @@ import NestedDropdown from "./NestedDropdown"
 
 export const Header  = ()=>{
     const cookies = useCookies()
+    const token = cookies.get(authConfig.tokenCookieName)
     const {open} = useCreateAccountModal()
     const router = useRouter()
-    const token = cookies.get(authConfig.tokenCookieName)
-    console.log("token" , token)
     return <div>
     <div className="flex border-whinGray border-b-2 items-center justify-center py-6 gap-40" >
     <div className="flex gap-4" >

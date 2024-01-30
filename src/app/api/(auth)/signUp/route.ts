@@ -14,11 +14,9 @@ import { apiResponse, errorMessage } from "@/utils/api"
 
 
 export const POST   = asyncWrapperApi(async (req  ) =>{
-  console.log("getting the request")
     const body = await  req.json()
-    console.log("body")
         const  parsedBodyResult = signUpValidator.safeParse(body)
-        console.log("pare" , parsedBodyResult)
+       
         if(parsedBodyResult.success === false)  return new Response(JSON.stringify(parsedBodyResult.error)  ,{
             status : StatusCodes.BAD_REQUEST , 
         } )
@@ -47,7 +45,7 @@ export const POST   = asyncWrapperApi(async (req  ) =>{
             response.cookies.set({
                 name: authConfig.tokenCookieName,
                 value: token,
-                httpOnly: true,
+                httpOnly: false,
               })
 
             return response    
