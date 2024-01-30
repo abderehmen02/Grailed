@@ -10,6 +10,7 @@ import LogInWithEmailModal from "@/modals/logInWithEmail";
 import LoginProvidersModal from "@/modals/loginProviderModal";
 import SignUpWithEMailModal from "@/modals/signUpWithEmail";
 import CreateAccountModal from "@/modals/createAccountModal";
+import { CookiesProvider } from 'next-client-cookies/server';
 
 
 
@@ -35,7 +36,7 @@ export default function RootLayout({
 
 
       <body className={inter.className}>
-<ReactQueryProvider>        
+<CookiesProvider><ReactQueryProvider>        
   <ToasterProvider>
 <LogInWithEmailModal/>
 <LoginProvidersModal/>
@@ -45,6 +46,8 @@ export default function RootLayout({
         {children}
         </ToasterProvider>      
 </ReactQueryProvider>
+</CookiesProvider>
+
         </body>
 
     </html>
