@@ -67,7 +67,8 @@ export type ProductDb = {
     acceptOffer : boolean ,
     smartPricing : boolean ,
     floorPrice : string ,
-    adressId :string 
+    adressId :string ,
+    photos : string[]
 }
 
 const ProductSchema = new mongoose.Schema<ProductDb  >({
@@ -91,6 +92,7 @@ const ProductSchema = new mongoose.Schema<ProductDb  >({
     smartPricing :  {type : Boolean , default : true} ,
     floorPrice  : {type : String, required: false},
     adressId : {type : String , required : true} ,
+    photos : {type : [String] , required : false }
   });
   
 
