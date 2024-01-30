@@ -8,6 +8,7 @@ export const appConfig = {
         sell : "/sell" ,
         forSale : "/products"
     } ,
-    url : "http://localhost:3000"
+    url : "http://localhost:3000" ,
+    unknownPersonImg : "/unknownPersonImg.png"
 
 }
