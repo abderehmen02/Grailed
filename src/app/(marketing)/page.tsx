@@ -11,7 +11,7 @@ export default async function Home() {
   const styles = await fetchStyles();
 
   return (
-    <main className="flex overflow-hidden flex-col w-full items-center jsutify-center">
+    <main className="flex  flex-col w-full items-center jsutify-center">
  
       <div className="hero flex items-center justify-center w-full h-[600px] relative">
       <video

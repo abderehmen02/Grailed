@@ -9,15 +9,44 @@ import { authConfig } from "@/config/authConfig"
 import { useRouter } from "next/navigation"
 import { useCreateAccountModal } from "@/store/authModals";
 import NestedDropdown from "./NestedDropdown"
+import { useEffect, useState } from "react"
 
-export const Header  = ()=>{
+export const Header: React.FC = ()=>{
     const cookies = useCookies()
-    const {open} = useCreateAccountModal()
+  const { open } = useCreateAccountModal()
     const router = useRouter()
     const token = cookies.get(authConfig.tokenCookieName)
-    console.log("token" , token)
-    return <div>
-    <div className="flex px-4 border-whinGray border-b-2 items-center justify-between xl:justify-center py-2 sm:py-6 gap-2 sm:gap-40" >
+  console.log("token", token)
+  const [sticky, setSticky] = useState<boolean>(false);
+
+  let timeoutId: number | null = null;
+
+  const handleScroll = (): void => {
+      if (timeoutId !== null) {
+          clearTimeout(timeoutId);
+      }
+      
+      timeoutId = window.setTimeout(() => {
+          const currentScrollPos = window.pageYOffset;
+          const stickyClassApplied = currentScrollPos > 0;
+          setSticky(stickyClassApplied);
+      }, 100); // Adjust delay as needed
+  };
+
+  useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      
+      return () => {
+          if (timeoutId !== null) {
+              clearTimeout(timeoutId);
+          }
+          window.removeEventListener('scroll', handleScroll);
+      };
+  }, []);
+
+    return         <div className="nav1 bg-[#fff] overflow-hidden">
+
+    <div className=" flex   overflow-hidden px-4 border-whinGray border-b-2 items-center justify-between xl:justify-center py-2 sm:py-6 gap-2 sm:gap-40" >
     <div className="flex gap-4" >
     <video 
   poster="https://assets.grailed.com/logo.jpg" 
@@ -51,6 +80,7 @@ export const Header  = ()=>{
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="-menu-icon"><rect width="24" height="24" fill="white"></rect><path d="M3 5H21V6.5H3V5Z" fill="black"></path><path d="M3 11.5H21V13H3V11.5Z" fill="black"></path><path d="M3 18H21V19.5H3V18Z" fill="black"></path></svg>
         </div>
       </div>
+      {!sticky ?
       <div className="hidden lg:flex px-4 w-full items-center py-2 justify-center  border-whinGray border-b-2">
         <div className="flex pageMaxWidth w-full justify-between items-center ">
           <div className="text-sm group  relative ">
@@ -541,7 +571,9 @@ export const Header  = ()=>{
           <div className="text-sm font-semibold">STAFF PICKS</div>
           <div className="text-sm font-semibold">COLLECTIONS</div>
         </div>
-      </div>
+        </div>
+                 :""   }
+
     </div>
   
 };
