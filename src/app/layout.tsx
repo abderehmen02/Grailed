@@ -7,8 +7,9 @@ import { ToasterProvider } from "@/providers/sonner";
 ;
 import { Inter } from "next/font/google";
 import LogInWithEmailModal from "@/modals/logInWithEmail";
-import LoginProvidersModal from "@/modals/createAccountModal";
+import LoginProvidersModal from "@/modals/loginProviderModal";
 import SignUpWithEMailModal from "@/modals/signUpWithEmail";
+import CreateAccountModal from "@/modals/createAccountModal";
 
 
 
@@ -39,6 +40,7 @@ export default function RootLayout({
 <LogInWithEmailModal/>
 <LoginProvidersModal/>
 <SignUpWithEMailModal/>
+<CreateAccountModal/>
 
         {children}
         </ToasterProvider>      
