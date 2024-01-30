@@ -11,7 +11,7 @@ export default async function Home() {
   const styles = await fetchStyles();
 
   return (
-    <main className="flex flex-col w-full items-center jsutify-center">
+    <main className="flex  flex-col w-full items-center jsutify-center">
  
       <div className="hero flex items-center justify-center w-full h-[600px] relative">
       <video
@@ -24,21 +24,21 @@ export default async function Home() {
   muted={true} // Add this if audio is not crucial and browser autoplay policies are a concern
 ></video>
 
-        <div className="flex flex-col gap-6 items-center justify-center text-white z-10">
-          <h3 className="text-4xl font-bold text-center">
+        <div className="flex px-4 flex-col gap-6 items-center justify-center text-white z-10">
+          <h3 className="text-[30px] sm:text-4xl font-bold text-center">
             THE PLATFORM FOR PERSONAL STYLE
           </h3>
         
 
-          <h4 className="text-3xl max-w-[600px] text-center">
+          <h4 className="text-[22px] sm:text-3xl max-w-[600px] text-center">
             Buy, sell, discover authenticated pieces from the world&rsquo;s top
             brands.
           </h4>
-          <div className="flex  gap-11">
-            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
+          <div className="flex gap-4  sm:gap-11">
+          <button className="py-3 px-2 text-[12px] sm:p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white md:text-xl font-bold">
               SHOP MENSWEAR
             </button>
-            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
+            <button className="py-3 px-2 text-[12px] sm:p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white md:text-xl font-bold">
               SHOP WOMENSWEAR
             </button>
           </div>

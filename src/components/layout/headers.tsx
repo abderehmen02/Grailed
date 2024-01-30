@@ -9,34 +9,65 @@ import { authConfig } from "@/config/authConfig"
 import { useRouter } from "next/navigation"
 import { useCreateAccountModal } from "@/store/authModals";
 import NestedDropdown from "./NestedDropdown"
+import { useEffect, useState } from "react"
 
-export const Header  = ()=>{
+export const Header: React.FC = ()=>{
     const cookies = useCookies()
-    const token = cookies.get(authConfig.tokenCookieName)
-    const {open} = useCreateAccountModal()
+  const { open } = useCreateAccountModal()
     const router = useRouter()
-    return <div>
-    <div className="flex border-whinGray border-b-2 items-center justify-center py-6 gap-40" >
+    const token = cookies.get(authConfig.tokenCookieName)
+
+  const [sticky, setSticky] = useState<boolean>(false);
+
+  let timeoutId: number | null = null;
+
+  const handleScroll = (): void => {
+      if (timeoutId !== null) {
+          clearTimeout(timeoutId);
+      }
+      
+      timeoutId = window.setTimeout(() => {
+          const currentScrollPos = window.pageYOffset;
+          const stickyClassApplied = currentScrollPos > 0;
+          setSticky(stickyClassApplied);
+      }, 100); // Adjust delay as needed
+  };
+
+  useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+      
+      return () => {
+          if (timeoutId !== null) {
+              clearTimeout(timeoutId);
+          }
+          window.removeEventListener('scroll', handleScroll);
+      };
+  }, []);
+
+    return         <div className="nav1 bg-[#fff] overflow-hidden">
+
+    <div className=" flex   overflow-hidden px-4 border-whinGray border-b-2 items-center justify-between xl:justify-center py-2 sm:py-6 gap-2 sm:gap-40" >
     <div className="flex gap-4" >
     <video 
   poster="https://assets.grailed.com/logo.jpg" 
-  className="w-[140px] h-auto"  
+  className="w-[90px] sm:w-[140px] h-auto"  
 
   autoPlay 
   loop 
   playsInline 
   muted
+  
 >
   <source src="https://assets.grailed.com/logo.webm" type="video/webm" />
   <source src="https://assets.grailed.com/logo.mp4" type="video/mp4" />
 </video>
-        <div className="flex p-1 gap-5  centerContent  border-2 border-black" >
+        <div className="flex p-1 gap-5 w-[160px] sm:w-[400px!important] lg:w-auto centerContent  border-1 border-black" >
         <i style={{WebkitTextStroke : "1px"}} className="bi bi-search  mx-4 h-fit  font-bold   "></i>
-        <input placeholder="Search" className="w-[400px] outline-none h-fit "  />
-        <TextButton className="border-stone-400 uppercase text-xs font-bold" >Search</TextButton>
+        <input placeholder="Search" className="w-[90px] sm:w-[200px] md:w-[350px] xl:w-[400px] outline-none h-fit "  />
+        <TextButton className="border-stone-400 hidden sm:block uppercase text-xs font-bold" >Search</TextButton>
         </div>
     </div>
-        <div className="flex gap-3" >
+        <div className="hidden xl:flex gap-3" >
             <PrimaryButton onClick={()=> token ? router.push(appConfig.routes.forSale ) : open() } className="font-semibold">SELL</PrimaryButton>
             <Link href={appConfig.routes.shop} ><PrimaryButton className="border-none  font-semibold" >SHOP</PrimaryButton></Link>
             <Link href={appConfig.routes.drycleanonly} ><PrimaryButton className="border-none font-semibold " >READ</PrimaryButton></Link>
@@ -44,8 +75,13 @@ export const Header  = ()=>{
             <SecondaryButton onClick={open}  >SITN UP</SecondaryButton>
 
         </div>
+        <div className="flex gap-4 items-center xl:hidden">
+        <svg className="Heart-module__heart___GCAPd heart" width="24px" height="24px" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.8941 12.6944L14 22.5886H12L2.10585 12.6944C-0.701951 9.8866 -0.701951 5.33367 2.10585 2.52587C4.91366 -0.281938 9.46658 -0.281938 12.2744 2.52587L13 3.25148L13.7256 2.52587C16.5334 -0.281938 21.0863 -0.281938 23.8941 2.52587C26.702 5.33367 26.702 9.8866 23.8941 12.6944Z" fill="black"></path></svg>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="-menu-icon"><rect width="24" height="24" fill="white"></rect><path d="M3 5H21V6.5H3V5Z" fill="black"></path><path d="M3 11.5H21V13H3V11.5Z" fill="black"></path><path d="M3 18H21V19.5H3V18Z" fill="black"></path></svg>
+        </div>
       </div>
-      <div className="flex w-full items-center py-2 justify-center  border-whinGray border-b-2">
+      {!sticky ?
+      <div className="hidden lg:flex px-4 w-full items-center py-2 justify-center  border-whinGray border-b-2">
         <div className="flex pageMaxWidth w-full justify-between items-center ">
           <div className="text-sm group  relative ">
             <Link href={""} className="font-semibold">
@@ -279,7 +315,8 @@ export const Header  = ()=>{
               </div>
             </div>
           </div>
-          <div className=" flex items-center gap-2 text-sm group  relative">
+     
+     <div className=" flex items-center gap-2 text-sm group  relative">
             <Link href={""} className="font-semibold">
               {" "}
               MENSWEAR{" "}
@@ -292,9 +329,8 @@ export const Header  = ()=>{
               height={13}
               className=""
             />
-         
-                      <div className="absolute  top-0 z-50 w-[240px]  h-[350px]  hidden group-hover:block">
-              <div className="mt-7 py-3 flex  px-4 ml-[-50px] w-[180px]  h-[350px] border border-1 border-t-[#ddd] bg-[#fff]">
+            <div className="absolute  top-0 z-50 w-[240px]  h-[350px]  hidden group-hover:block">
+              <div className="mt-7 py-3 flex pl-4 ml-[-50px] w-[190px]  h-[350px] border border-1 border-t-[#ddd] bg-[#fff]">
                 <div className="font-semibold">
                   <Link
                     className="block hover:text-[blue]  py-2 text-[14px]"
@@ -330,7 +366,7 @@ export const Header  = ()=>{
                     />
                   </div>
                   <div className="   wtop flex justify-between  py-2 text-[14px]">
-                    BOTTOMS <p className="text-[18px]">&gt;</p>
+                    BOTTOMS <p className="  text-[18px]">&gt;</p>
                     <NestedDropdown
                       menuItems={[
                         { title: "JEANS", href: "/jeans" },
@@ -375,9 +411,8 @@ export const Header  = ()=>{
         ]}
       />
                   </div>
-                
                   <div className="   wtop flex justify-between  py-2 text-[14px]">
-                  TAILORING <p className="text-[18px]">&gt;</p>
+                  TAILORING<p className="ml-4 text-[18px]">&gt;</p>
                     <NestedDropdown 
         menuItems={[
           { title: "JEANS", href: "/jeans" },
@@ -386,9 +421,10 @@ export const Header  = ()=>{
         ]}
       />
                   </div>
-                  <div className="   wtop flex justify-between  py-2 text-[14px]">
+                  
+                  <div className=" w-[130px]  wtop flex justify-between  py-2 text-[14px]">
                     {" "}
-                    ACCESSORIES <p className="text-[18px]">&gt;</p>
+                    ACCESSORIES     <p className="text-[18px]">&gt;</p>
                     <NestedDropdown 
         menuItems={[
           { title: "JEANS", href: "/jeans" },
@@ -401,7 +437,6 @@ export const Header  = ()=>{
               </div>
             </div>
           </div>
-
           <div className=" flex items-center gap-2 text-sm group  relative">
             <Link href={""} className="font-semibold">
               {" "}
@@ -536,7 +571,9 @@ export const Header  = ()=>{
           <div className="text-sm font-semibold">STAFF PICKS</div>
           <div className="text-sm font-semibold">COLLECTIONS</div>
         </div>
-      </div>
+        </div>
+                 :""   }
+
     </div>
   
 };

@@ -14,7 +14,7 @@ interface NestedDropdownProps {
 
 const NestedDropdown: React.FC<NestedDropdownProps> = ({ menuItems }) => {
   return (
-    <div className="absolute ml-[130px] top-0 z-[10000000] w-[200px] min-h-[350px] underwtop">
+    <div className="absolute ml-[130px]  top-0 z-[10000000] w-[250px] min-h-[350px] underwtop">
       <div className="mt-7 py-3 flex px-4 w-[180px] ml-[20px] min-h-[300px] border border-1 border-t-[#ddd] bg-[#fff]">
         <div className="font-semibold">
           {menuItems?.map((item, index) => (
