@@ -1,13 +1,22 @@
 import { fetchStyles } from "@/cms/fetchFuntions";
 import Image from "next/image";
 import { Styles } from "./_components/styles";
+import { signIn } from "next-auth/react";
+import {  SignOut } from "@/components/auth/components";
+import LoginModal from "@/modals/loginModal";
+import SignUpModal from "@/modals/signUpModel";
+
 
 export default async function Home() {
   const styles = await fetchStyles();
 
   return (
     <main className="flex flex-col w-full items-center jsutify-center">
+
       <div className="hero flex items-center justify-center w-full h-[650px] relative">
+      <SignUpModal/>
+      <LoginModal/>
+      <div className="hero flex items-center justify-center w-full h-[600px] relative">
       <video
   className="w-full absolute top-0 left-0 z-0 object-cover h-full"
   poster="/heroVideoPoster.jpg"  // Assuming this is correctly placed in the public folder
