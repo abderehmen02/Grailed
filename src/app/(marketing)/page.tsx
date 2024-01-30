@@ -7,7 +7,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col w-full items-center jsutify-center">
-      <div className="hero flex items-center justify-center w-full h-[600px] relative">
+      <div className="hero flex items-center justify-center w-full h-[650px] relative">
       <video
   className="w-full absolute top-0 left-0 z-0 object-cover h-full"
   poster="/heroVideoPoster.jpg"  // Assuming this is correctly placed in the public folder
@@ -29,10 +29,10 @@ export default async function Home() {
             brands.
           </h4>
           <div className="flex  gap-11">
-            <button className="p-4 border-2 border-white text-xl font-bold">
+            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
               SHOP MENSWEAR
             </button>
-            <button className="p-4 border-2 border-white text-xl font-bold">
+            <button className="p-4 border border-1 hover:bg-[#0000ff] hover:border-0 duration-200  ease-linear border-white text-xl font-bold">
               SHOP WOMENSWEAR
             </button>
           </div>
