@@ -4,7 +4,7 @@
 
 
 export const Announcements = ()=>{
-    return <div className="w-full h-full flex  flex-col gap-6" >
+    return <div className="w-full  flex  flex-col gap-6" >
     <h3 className="font-bold text-xl" >Announcements</h3>
 
 
