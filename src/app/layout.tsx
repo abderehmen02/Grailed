@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import "bootstrap-icons/font/bootstrap-icons.css"
+// import "bootstrap-icons/font/bootstrap-icons.css" ;
 import { ReactQueryProvider } from "@/providers/react-query";
 import { ToasterProvider } from "@/providers/sonner";
-;
 import { Inter } from "next/font/google";
 import LogInWithEmailModal from "@/modals/logInWithEmail";
 import LoginProvidersModal from "@/modals/loginProviderModal";
