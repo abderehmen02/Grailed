@@ -1,3 +1,5 @@
 export const ForSell = ()=>{
-    return 
+    return <div className="flex flex-col">
+
+        </div>
 }
