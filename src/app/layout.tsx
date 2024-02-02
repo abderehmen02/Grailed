@@ -41,7 +41,6 @@ export default function RootLayout({
 <LoginProvidersModal/>
 <SignUpWithEMailModal/>
 <CreateAccountModal/>
-
         {children}
         </ToasterProvider>      
 </ReactQueryProvider>

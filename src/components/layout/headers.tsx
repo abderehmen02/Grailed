@@ -49,7 +49,8 @@ export const Header: React.FC = ()=>{
     <div className=" flex   overflow-hidden px-4 border-whinGray border-b-2 items-center justify-between xl:justify-center py-3 sm:py-6 gap-2 sm:gap-40" >
   {/* logo,searchbox */}
         <div className="flex gap-4" >
-    <video 
+          <Link href={'/'}>
+          <video 
   poster="https://assets.grailed.com/logo.jpg" 
   className="w-[90px] sm:w-[140px] h-auto"  
 
@@ -62,6 +63,7 @@ export const Header: React.FC = ()=>{
   <source src="https://assets.grailed.com/logo.webm" type="video/webm" />
   <source src="https://assets.grailed.com/logo.mp4" type="video/mp4" />
 </video>
+          </Link>
         <div className="flex p-1 gap-5 w-[160px] sm:w-[400px!important] lg:w-auto centerContent  border-1 border-black" >
         <i style={{WebkitTextStroke : "1px"}} className="bi bi-search  mx-4 h-fit  font-bold   "></i>
         <input placeholder="Search" className="w-[90px] sm:w-[200px] md:w-[350px] xl:w-[400px] outline-none h-fit "  />
