@@ -154,7 +154,7 @@ Be Social          </h2>
        </div>
       </div>
       {/*  */}
-       <div id="join" className="sm:flex mx-auto max-w-[800px] px-4 justify-center gap-4 items-center ">
+       <div id="join" className="sm:flex py-4 mx-auto max-w-[800px] px-4 justify-center gap-4 items-center ">
       <Image className="mx-auto" src={'/images/about/nyc_team2018.jpg'} alt="shirt" width={300} height={400}/>
         <div className="mx-auto">
         <h2 className="text-[26px] text-[#000] font-bold">
