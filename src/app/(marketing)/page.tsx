@@ -8,10 +8,15 @@ import ShopMenswear from "./_components/ShopMenswear";
 import ShopWomenswear from "./_components/ShopWomenswear";
 import PopularDesigners from "./_components/PopularDesigners";
 import StaffPicks from "./_components/StaffPicks";
+import {  manShop,shopLogo , wanShop } from "@/front_utils/info";
 
 
 export default async function Home() {
   const styles = await fetchStyles();
+  const manshops = manShop;
+  const wanshops = wanShop;
+  const shopLogs = shopLogo;
+
 
   return (
     <main className="flex  flex-col w-full items-center jsutify-center">
@@ -49,9 +54,11 @@ export default async function Home() {
       </div>
       <Styles styles={styles || []} />
       <FeaturedCollections />
-      <ShopMenswear />
-      <ShopWomenswear />
-      <PopularDesigners />
+      <div className="px-4">
+      <ShopMenswear manshops={manshops||[]} />
+      <ShopWomenswear wanshops={wanshops||[]} />
+      <PopularDesigners shopLogo={shopLogs||[]}  />
+      </div>
       <StaffPicks/>
       <HFooter/>
       
