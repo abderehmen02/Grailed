@@ -50,7 +50,7 @@ export const wanShop = [
         "image": "/images/wshop4.png"
     } ,
     {
-        "name":"Bags & Luggage",
+        "name":"Bags ",
         "image": "/images/wshop5.png"
     } ,
     {
@@ -88,4 +88,80 @@ export const shopLogo = [
         "name":"Accessories        ",
         "image": "/images/logo6.png"
     }
+]
+
+
+export const products = [
+    {
+        "image": "/images/products.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+
+    {
+        "image": "/images/products2.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+    {
+        "image": "/images/products3.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+    {
+        "image": "/images/products4.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+    {
+        "image": "/images/products5.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+    {
+        "image": "/images/products6.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    ,
+    {
+        "image": "/images/products2.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    },
+    {
+        "image": "/images/products3.png",
+        'time': "15 minutes ago(7 days)",
+        "name": "MANDARINA DUCK",
+        "design": "⚡️QUICK SALE⚡️2000s' Ma",
+        "price":"$250"
+
+    }
+    
 ]

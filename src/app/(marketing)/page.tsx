@@ -8,7 +8,7 @@ import ShopMenswear from "./_components/ShopMenswear";
 import ShopWomenswear from "./_components/ShopWomenswear";
 import PopularDesigners from "./_components/PopularDesigners";
 import StaffPicks from "./_components/StaffPicks";
-import {  manShop,shopLogo , wanShop } from "@/front_utils/info";
+import {  manShop,products,shopLogo , wanShop } from "@/front_utils/info";
 
 
 export default async function Home() {
@@ -16,6 +16,7 @@ export default async function Home() {
   const manshops = manShop;
   const wanshops = wanShop;
   const shopLogs = shopLogo;
+  const product = products;
 
 
   return (
@@ -59,7 +60,7 @@ export default async function Home() {
       <ShopWomenswear wanshops={wanshops||[]} />
       <PopularDesigners shopLogo={shopLogs||[]}  />
       </div>
-      <StaffPicks/>
+      <StaffPicks Products={product} />
       <HFooter/>
       
     </main>
