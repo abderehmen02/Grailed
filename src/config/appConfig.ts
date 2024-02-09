@@ -6,6 +6,7 @@ export const appConfig = {
         categories : "/categories" ,
         collections : "/collections" ,
         sell : "/sell" ,
+        newSell : "/sell/new" ,
         forSale : "/sell/products" ,
         sold : '/sell/sold' ,
         drafts : '/sell/drafts' ,

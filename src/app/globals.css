@@ -43,6 +43,20 @@
 .border-1 {
   border-width:  1px;
 }
+.border-b-1 {
+  border-bottom-width: 1px;
+}
+.border-l-1 {
+  border-left-width:  1px;
+}
+.border-r-1 {
+  border-right-width: 1;
+}
+
+.border-t-1 {
+  border-top-width: 1;
+}
+
 /* swiper.js */
 .swiper-button-next,
 .swiper-button-prev {
