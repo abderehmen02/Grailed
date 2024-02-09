@@ -37,7 +37,7 @@ const PrimaryInput: React.FC<InputProps> = forwardRef<HTMLInputElement, InputPro
       <div
         style={containerStyle}
         className={cn(
-          'flex flex-col  w-full items-start justify-center',
+          'flex flex-col gap-3  w-full items-start justify-center',
           className
         )}
       >
@@ -96,11 +96,18 @@ type SelectInputProps = {
 type SelectInputCroupedProps = {
     value : string | number | undefined ,
     label : string ,
-    list : readonly   { label : string , list :  number[] | string[] }[]  ,
+    list : readonly   { label : string , list : readonly number[] | readonly string[] }[]  ,
     handleChange : React.ChangeEventHandler<HTMLSelectElement>
     }  & HTMLAttributes<HTMLSelectElement>
   
-
+type InputSelectedProps = {
+  value : string | number | undefined ,
+  label : string ,
+  list : readonly string[] | readonly number[] ,
+  handleChange : React.ChangeEventHandler<HTMLSelectElement>
+    }  & HTMLAttributes<HTMLSelectElement>
+    
+    
 export const InputSelect : React.FC<SelectInputProps> = ({value , handleChange , label , list , className ,  ...props })=>{
   return <select className={cn("border-1 px-3 py-1 font-bold customSelect border-gray-300 w-[400px] rounded-sm  " , className)}  {...props} onChange={handleChange}  >
 { value === undefined &&   <option className="hidden" value={label}>{label}</option>}
@@ -126,6 +133,18 @@ list.map(item=><optgroup key={item.label} label={item.label}>
 </select>
 }
 
+
+
+
+export const InputSelected : React.FC<InputSelectedProps> = ({value , handleChange , label , list , className ,  ...props })=>{
+  return <select className={cn("border-1 px-3 py-1 font-bold customSelect border-gray-300 w-[400px] rounded-sm  " , className)}  {...props} onChange={handleChange}  >
+{ value === undefined &&   <option className="hidden" value={label}>{label}</option>}
+  {
+list.map(item=>
+<option key={item} style={{padding : "10px"}} className="px-3  font-bold " value={item} onClick={(e)=>"dkl"} >{item}</option>
+  )}
+</select>
+}
 
 
 PrimaryInput.displayName = "PrimaryInput"
