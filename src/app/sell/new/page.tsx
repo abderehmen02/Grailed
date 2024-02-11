@@ -1,6 +1,7 @@
 "use client"
 import { Header } from "@/components/layout/headers";
 import { Condition, ProductCategory, ProductColor, ProductDepartement, Size, SubCategory, colorsArray, conditions, productCategories, productDepartements, sizes, subCategories } from "@/db/models/productModal";
+import { useSell } from "@/hooks/sell";
 import { InputSelect, InputSelectGrouped, PrimaryInput } from "@/ui/input";
 import { Color, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import SelectInput from "@mui/material/Select/SelectInput";
@@ -23,7 +24,9 @@ const [condition , setCondition ] = useState<Condition>(conditions[0])
 const [descreption , setDescreption ] = useState<string>("")
 const [tags , setTags ] = useState<string>("")
 const [price , setPrice ] = useState<number>(0)
-
+const [imagesUrl , setImagesUrl ] = useState<string[]>([])
+const [address , setAddress ] = useState("")
+const {uploadImage} = useSell()
     return <div className="flex items-center flex-col" > 
 <Header/>
 <div className="flex items-start w-fit py-12 gap-11  pageMaxWidth px-11 jsutify-start flex-col " >
@@ -56,7 +59,15 @@ const [price , setPrice ] = useState<number>(0)
 <PrimaryInput label="Tags" value={tags}  onChange={(e)=>setTags(e.target.value)} />
 </div>
 <div className="py-8" >
-<PrimaryInput label="Price" value={price}  onChange={(e)=>setPrice(e.target.value)} />
+<PrimaryInput label="Price" value={price}  onChange={(e)=>setPrice(Number(e.target.value))} />
+</div>
+<div>
+<PrimaryInput label="Address" value={address}  onChange={(e)=>setAddress(e.target.value)} />
+</div>
+<div className="flex gap-5 " >
+<div className="w-[70px] rounded-lg h-[70px] border-2 border-black relative cursor-pointer" ><input onChange={(e)=>{uploadImage(e).then(imageUrl =>typeof imageUrl === "string" && setImagesUrl(curr=>[...curr , imageUrl]) ) }}  type="file" className="   rounded-full items-center justify-center border-green-600 absolute w-full h-full   opacity-0  cursor-pointer" /> <i className="bi text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bi-camera"></i> </div>
+<div className="w-[70px] rounded-lg h-[70px] border-2 border-black relative cursor-pointer" ><input onChange={(e)=>{uploadImage(e).then(imageUrl =>typeof imageUrl === "string" && setImagesUrl(curr=>[...curr , imageUrl]) ) }}  type="file" className="   rounded-full items-center justify-center border-green-600 absolute w-full h-full   opacity-0  cursor-pointer" /> <i className="bi text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bi-camera"></i> </div>
+<div className="w-[70px] rounded-lg h-[70px] border-2 border-black relative cursor-pointer" ><input onChange={(e)=>{uploadImage(e).then(imageUrl =>typeof imageUrl === "string" && setImagesUrl(curr=>[...curr , imageUrl]) ) }}  type="file" className="   rounded-full items-center justify-center border-green-600 absolute w-full h-full   opacity-0  cursor-pointer" /> <i className="bi text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bi-camera"></i> </div>
 </div>
 </div>
     </div>
