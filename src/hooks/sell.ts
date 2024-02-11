@@ -2,6 +2,8 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import {ref , listAll , uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage"
 import { firebaseStorage } from "@/db/firebase/config";
 import { toast } from "sonner";
+import axios from "axios";
+import { ProductDb } from "@/db/models/productModal";
 
 export const useSell = ()=>{
 const [isUploadImageRequest , setIsUploadImageRequest ] = useState(false)
@@ -52,5 +54,13 @@ const [uploadImageProgress , setUploadImageProgress ] = useState<number>(1)
       }; 
 
 
-      return {uploadImage  , isUploadImageRequest , uploadImageProgress }
+
+      const createProduct = async  (body : Omit<ProductDb , "userId" >)=>{
+const res = await  axios.post("/api/createProduct" , body )
+console.log("res" , res)
+return res.data
+      }
+
+
+      return {uploadImage  , isUploadImageRequest , uploadImageProgress , createProduct }
 }

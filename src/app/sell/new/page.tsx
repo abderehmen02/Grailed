@@ -1,12 +1,15 @@
 "use client"
 import { Header } from "@/components/layout/headers";
+import { PrimaryButton } from "@/components/ui/buttons";
 import { Condition, ProductCategory, ProductColor, ProductDepartement, Size, SubCategory, colorsArray, conditions, productCategories, productDepartements, sizes, subCategories } from "@/db/models/productModal";
 import { useSell } from "@/hooks/sell";
 import { InputSelect, InputSelectGrouped, PrimaryInput } from "@/ui/input";
 import { Color, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import SelectInput from "@mui/material/Select/SelectInput";
+import { useMutation } from "@tanstack/react-query";
 
 import { useState } from "react";
+import { toast } from "sonner";
 
 
 
@@ -16,7 +19,7 @@ const [selectedDepartement , setSelectedDepartement ] = useState<ProductDepartem
 const [selectedCategory , setSelectedCategory ] = useState<ProductCategory>(productCategories.Menswear[0])
 const [selectedSubCategory , setSelectedSubCategory ] = useState<SubCategory | undefined>(undefined)
 const [designer , setDesigner ] = useState<string>("")
-const [size , setSize ] = useState<Size | undefined>(undefined)
+const [size , setSize ] = useState<Size>(sizes.FR[0])
 const [selectedSize , setSelectedSize ] = useState<Size>(sizes.FR[0])
 const [name , setName ] = useState<string>("")
 const [color , setColor ] = useState<ProductColor>(colorsArray[0])
@@ -26,7 +29,19 @@ const [tags , setTags ] = useState<string>("")
 const [price , setPrice ] = useState<number>(0)
 const [imagesUrl , setImagesUrl ] = useState<string[]>([])
 const [address , setAddress ] = useState("")
-const {uploadImage} = useSell()
+const {uploadImage , createProduct } = useSell()
+const {data , isError , mutate , isPending}= useMutation({
+    mutationFn  : ()=>createProduct({acceptOffer : true ,adressId : address , brustMeasure : size , category : selectedCategory , color : color , condition : condition , descreption : descreption , designer : designer , departement : selectedDepartement || productDepartements[0]  , floorPrice : "0" , isDraft : false , lengthMeasure :  "500" ,name : name , photos : imagesUrl , price : String(price) , shouldersMeasure : size ,  size , sleeveLengthMeasure  : size , smartPricing : false ,subcategory : selectedSubCategory || subCategories[0] , tags : [tags] , waistMeasure : size }) ,
+    onSuccess : ()=>{
+        toast.success("product has been saved!")
+    } ,
+    onError : ()=>[
+        toast.error("some error hapened !, please try again later.")
+    ]
+})
+
+
+
     return <div className="flex items-center flex-col" > 
 <Header/>
 <div className="flex items-start w-fit py-12 gap-11  pageMaxWidth px-11 jsutify-start flex-col " >
@@ -72,7 +87,8 @@ const {uploadImage} = useSell()
 <div className="w-[70px] rounded-lg h-[70px] border-2 border-black relative cursor-pointer" ><img src={imagesUrl[4]} className="absolute w-full h-full rounded-lg ²top-0 left-0 " /> <input  onChange={(e)=>{uploadImage(e , setImagesUrl ) }}  type="file" className="    items-center justify-center border-green-600 absolute w-full h-full   opacity-0  cursor-pointer" /> <i className="bi text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bi-camera"></i> </div>
 <div className="w-[70px] rounded-lg h-[70px] border-2 border-black relative cursor-pointer" ><img src={imagesUrl[5]} className="absolute w-full h-full rounded-lg ²top-0 left-0 " /> <input  onChange={(e)=>{uploadImage(e , setImagesUrl ) }}  type="file" className="    items-center justify-center border-green-600 absolute w-full h-full   opacity-0  cursor-pointer" /> <i className="bi text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bi-camera"></i> </div>
 
-</div>²
-</div>²
+</div>
+<PrimaryButton loading={isPending} onClick={()=>mutate()} >Save</PrimaryButton>
+</div>
     </div>
 }
