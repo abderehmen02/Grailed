@@ -32,7 +32,7 @@ export const UserInfoComponent = ()=>{
       </div>  
       <div  className="flex gap-4 items-center h-full">
 <div className="flex flex-col gap-1">
-<h2>{userInfo?.feedBacks.length   }</h2>
+<h2>{userInfo?.feedBacks?.length ?? 0   }</h2>
 <h2>{ userInfo?.feedBacks.length? 'feedbacks' : 'No feedbacks'  }</h2>
 </div>
 <div className="flex flex-col gap-1 " >
