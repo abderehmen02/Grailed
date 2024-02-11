@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import {ref , listAll , uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage"
 import { firebaseStorage } from "@/db/firebase/config";
 import { toast } from "sonner";
@@ -9,7 +9,7 @@ const [uploadImageProgress , setUploadImageProgress ] = useState<number>(1)
 
 
 
-    const uploadImage = async (event : ChangeEvent<HTMLInputElement>) : Promise<string | void | null> => {
+    const uploadImage = async (event : ChangeEvent<HTMLInputElement> , setImages : Dispatch<SetStateAction<string[]>>) : Promise<void> => {
         let returnedImageUrl : null | string  = null ;
         setIsUploadImageRequest(true)
         try {
@@ -32,10 +32,9 @@ const [uploadImageProgress , setUploadImageProgress ] = useState<number>(1)
           },async ()=>{
             toast.success("image uploaded succussfully!")
             const imageUrl = await getDownloadURL(imgRef)
-            console.log("got img url" , imageUrl)
             if(!imageUrl){ toast.error("can not get the image url , please try uploading the file again") } 
-            returnedImageUrl = imageUrl
-            setIsUploadImageRequest(false)
+            setImages(curr=>[...curr , imageUrl])
+            // setIsUploadImageRequest(false)
 
            //  alert(newUser?.profilePic || "no profile pic")
    
@@ -43,8 +42,6 @@ const [uploadImageProgress , setUploadImageProgress ] = useState<number>(1)
           )
     
          }
-console.log("img url" , returnedImageUrl)
-return returnedImageUrl
         }
         
          catch (error) {

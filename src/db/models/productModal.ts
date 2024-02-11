@@ -48,6 +48,7 @@ export type Size = typeof sizes["S/M/L"][number] | typeof sizes.US[number] | typ
 export type ProductColor = typeof colorsArray[number]
 export type Condition = typeof conditions[number]
 export type ProductDb = {
+    userId : string ,
     departement : ProductDepartement ,
     category : ProductCategory ,
     subcategory : SubCategory ,
@@ -73,6 +74,7 @@ export type ProductDb = {
 }
 
 const ProductSchema = new mongoose.Schema<ProductDb  >({
+    userId : {type : String , required: true} ,
     departement : {type : String , required : true} , 
     category : {type : String , required : true} ,
     subcategory : {type : String , required : true} ,
